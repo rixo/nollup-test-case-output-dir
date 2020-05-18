@@ -37,22 +37,22 @@ The custom report format is most informative for debug. Its layout is as follow:
 1. Test-specific Nollup options (passed to dev middleware)
 2. Test-specific Rollup config
 3. Rollup:
-  file writting by Rollup => URL used by the test to try to get the file
+    file writting by Rollup => URL used by the test to try to get the file
 4. Nollup:
-  dump of `Object.keys(files)` in dev middleware (only with custom branch)
+    dump of `Object.keys(files)` in dev middleware (only with custom branch)
 ~~~
 
 Example:
 
 ~~~
-{ contentBase: 'dist' }
-{ input: 'src/main.js', output: { dir: 'dist/app', format: 'es' } }
-Rollup:
- ⚠  'dist/app/main.js' => /app/main.js
- ⚠  'dist/app/nested-93659157.js' => /app/nested-[hash].js
- ⚠  'dist/app/nested-d1b6ea0f.js' => /app/nested-[hash].js
-Nollup:
-[ 'main.js', 'nested-[hash].js' ]
+1. { contentBase: 'dist' }
+2. { input: 'src/main.js', output: { dir: 'dist/app', format: 'es' } }
+3. Rollup:
+   ⚠  'dist/app/main.js' => /app/main.js
+   ⚠  'dist/app/nested-93659157.js' => /app/nested-[hash].js
+   ⚠  'dist/app/nested-d1b6ea0f.js' => /app/nested-[hash].js
+4. Nollup:
+   [ 'main.js', 'nested-[hash].js' ]
 ~~~
 
 ## Principle
