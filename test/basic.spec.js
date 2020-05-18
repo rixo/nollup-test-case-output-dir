@@ -225,6 +225,23 @@ test(
 
 test(
   macro,
+  'output.dir + entryFileNames',
+  {
+    contentBase: 'dist',
+    // baseUrl: 'app',
+  },
+  {
+    input: 'src/a/main.js',
+    output: {
+      dir: 'dist/app',
+      entryFileNames: 'app/[name].js',
+      format: 'es',
+    },
+  }
+)
+
+test(
+  macro,
   'output.dir: entrypoints conflict',
   {
     contentBase: 'dist',
