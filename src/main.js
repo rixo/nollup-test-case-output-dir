@@ -1,14 +1,13 @@
-import dep from './dep.js'
+if (false) {
+  import('./dyn1.js').then(({ default: x }) => {
+    console.log('dyn1', x)
+  }).catch(err => {
+    console.trace(err)
+  })
+}
 
-// setTimeout(() => {
-//   import('./sub/nested.js').then(({ default: nested }) => {
-//     console.log('main.js', nested)
-//   })
-// })
-import('./sub/nested.js').then(({ default: nested }) => {
-  console.log('main.js', nested)
-})
-
-import('./sub2/nested.js').then(({ default: nested }) => {
-  console.log('main.js', dep, nested2)
+import('./dyn2.js').then(({ default: x }) => {
+  console.log('dyn2', x)
+}).catch(err => {
+  console.trace(err)
 })

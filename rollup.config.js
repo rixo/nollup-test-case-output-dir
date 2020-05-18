@@ -1,8 +1,8 @@
 export default {
-  input: ['src/main.js', 'src/sub/nested.js', 'src/sub2/nested.js'],
+  input: 'src/main.js',
   output: {
     dir: 'dist/app',
-    format: 'es',
+    format: 'esm',
     sourcemap: true,
   }
 }
