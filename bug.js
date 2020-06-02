@@ -56,18 +56,21 @@ const handleError = err => {
   console.error(err)
 }
 
+const serial = (...opts) =>
+  opts.flat().reduce((p, fn) => p.then(fn), Promise.resolve())
+
 const bug = () =>
-  Promise.all([
-    fs.promises.writeFile(main, main1, 'utf8'),
+  serial([
     fs.promises.writeFile(foot, foo1, 'utf8'),
     fs.promises.unlink(foo),
+    fs.promises.writeFile(main, main1, 'utf8'),
   ])
 
 const restore = () =>
-  Promise.all([
-    fs.promises.writeFile(main, main0, 'utf8'),
+  serial([
     fs.promises.writeFile(foo, foo0, 'utf8'),
     fs.promises.unlink(foot),
+    fs.promises.writeFile(main, main0, 'utf8'),
   ])
 
 const handler = fs.existsSync(foo) ? bug : restore
