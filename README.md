@@ -58,6 +58,10 @@ Uncaught TypeError: modules[number] is not a function
 
 **NOTE** There is apparently a timing dimension to the issue. On some runs, the HMR update actually succeeds.
 
+#### Branch: master
+
+:ok:
+
 ## Case: dynamic import
 
 Reload browser
@@ -72,10 +76,6 @@ Expected browser console output:
 > foo
 foo
 ```
-
-#### Branch: master
-
-:ok:
 
 ### Actual
 
