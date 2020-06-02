@@ -59,18 +59,24 @@ const handleError = err => {
 const serial = (...opts) =>
   opts.flat().reduce((p, fn) => p.then(fn), Promise.resolve())
 
+const wait = d => new Promise(resolve => setTimeout(resolve, d))
+
+const d = 75
+
 const bug = () =>
   serial([
-    fs.promises.writeFile(foot, foo1, 'utf8'),
-    fs.promises.unlink(foo),
-    fs.promises.writeFile(main, main1, 'utf8'),
+    () => fs.promises.writeFile(main, main1, 'utf8'),
+    () => wait(d),
+    () => fs.promises.writeFile(foot, foo1, 'utf8'),
+    () => fs.promises.unlink(foo),
   ])
 
 const restore = () =>
   serial([
-    fs.promises.writeFile(foo, foo0, 'utf8'),
-    fs.promises.unlink(foot),
-    fs.promises.writeFile(main, main0, 'utf8'),
+    () => fs.promises.writeFile(main, main0, 'utf8'),
+    () => wait(d),
+    () => fs.promises.writeFile(foo, foo0, 'utf8'),
+    () => fs.promises.unlink(foot),
   ])
 
 const handler = fs.existsSync(foo) ? bug : restore
