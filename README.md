@@ -11,7 +11,7 @@ yarn
 
 HMR fails in browser when a file is renamed. Server remains OK, a browser reload fixes the situation.
 
-In order to witness this, you've got to simultaneously rename a file, and change the content of the file that imports it. Otherwise you break on "missing module" (because the consumer still imports a file that has just been deleted -- renamed), which I think is expected.
+In order to witness this, you've got to simultaneously rename a file, and change the content of the file that imports it. Otherwise you break on "missing module" (because the consumer still imports a file that has just been deleted -- renamed), which I think is expected, and operation resumes normally afterward :sunglasses:
 
 The real use case is an app that watches the project's sources in parallel to Nollup, and generates a manifest files that imports those files. The bundler processes both the manifest and the imported files.
 
