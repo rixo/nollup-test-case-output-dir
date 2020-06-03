@@ -8,13 +8,13 @@ const foot = path.resolve(__dirname, 'src/foot.js')
 const NOLLUP = !process.env.ROLLUP
 const DYN = !!process.env.DYN
 
-const foo0 = `
-  export default 'foo'
+const foo0 = () => `
+  export default 'foo' + ${Math.random()}
   console.log('> foo')
 `
 
-const foo1 = `
-  export default 'foot'
+const foo1 = () => `
+  export default 'foot' + ${Math.random()}
   console.log('> foot')
 `
 
@@ -67,7 +67,7 @@ const bug = () =>
   serial([
     () => fs.promises.writeFile(main, main1, 'utf8'),
     () => wait(d),
-    () => fs.promises.writeFile(foot, foo1, 'utf8'),
+    () => fs.promises.writeFile(foot, foo1(), 'utf8'),
     () => fs.promises.unlink(foo),
   ])
 
@@ -75,7 +75,7 @@ const restore = () =>
   serial([
     () => fs.promises.writeFile(main, main0, 'utf8'),
     () => wait(d),
-    () => fs.promises.writeFile(foo, foo0, 'utf8'),
+    () => fs.promises.writeFile(foo, foo0(), 'utf8'),
     () => fs.promises.unlink(foot),
   ])
 
