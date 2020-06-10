@@ -4,8 +4,8 @@ import del from 'rollup-plugin-delete'
 export default {
   input: 'src/main.js',
   output: {
-    dir: 'dist/app',
-    format: 'esm',
+    file: 'dist/main.js',
+    format: 'iife',
     sourcemap: true,
   },
   plugins: [
@@ -18,7 +18,7 @@ export default {
         inMemory: true,
         port: 8080,
         mount: {
-          'dist/app': '/',
+          dist: '/',
           public: '/',
         },
       }),

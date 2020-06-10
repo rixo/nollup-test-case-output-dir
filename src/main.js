@@ -1,4 +1,10 @@
+import { foo, bar, baz } from './a.js'
 
-  import foo from './foo.js'
-  console.log(foo)
-  module.hot.accept(() => { require(module.id) })
+console.log(foo, bar, baz)
+
+// prevent rollup-plugin-hot from crashing
+if (typeof module !== 'undefined') {
+  module.hot.accept(() => {
+    require(module.id)
+  })
+}
